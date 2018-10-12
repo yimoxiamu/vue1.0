@@ -36,7 +36,7 @@ p{
     margin-left:5px;
     margin-top:5px;
 }
-.insert_time{
+.create_time{
     width:100px;
     float:right;
 }
@@ -84,7 +84,7 @@ p{
         <div class="blogList" v-for="item in items">
             <Card class="card">
                 <div style="width:100%;height:20px">
-                    <span class="title"><a @click="doRout($event)" :data-id="item.blog_uuid">{{ item.blog_title }}</a></span><span class="insert_time">{{ item.insert_time }}</span>
+                    <span class="title"><a @click="doRout($event)" :data-id="item.blog_uuid">{{ item.blog_title }}</a></span><span class="create_time">{{ item.create_time }}</span>
                 </div>
                 <div >
                     <span class="auth"><Icon type="md-color-filter" />{{item.blog_auth}}</span>
@@ -105,7 +105,6 @@ p{
     </div>
 </template>
 <script>
-import Qs from 'qs';
 export default {
     name:'home',
     data (){
@@ -117,11 +116,9 @@ export default {
         }
     },
     created:function(){
-        const data = {
-            pageNum : this.pageNum,
-            pageSize : this.pageSize
-        }
-        this.$http.post("/blog/blogList",data).then(response =>{
+        let url = this.$comjs.buildPath("/blog/blogList",this.pageNum,this.pageSize);
+        this.$http.get(url).then(response =>{
+            console.info(response);
             const _data = response.data.data;
             this.total = _data.total;
             this.items = _data.items;

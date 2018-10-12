@@ -7,7 +7,7 @@ import iview from 'iview';
 import axios from 'axios';
 import 'iview/dist/styles/iview.css'
 import Qs from 'querystring';
-
+import Comjs from '.././static/js/common.js'
 
 Vue.config.productionTip = false;
 axios.defaults.baseURL = "http://localhost:7070";
@@ -23,6 +23,7 @@ axios.interceptors.request.use((config) => {
 });
 
 Vue.prototype.$http = axios
+Vue.prototype.$comjs = Comjs;
 Vue.use(iview);
 /* eslint-disable no-new */
 new Vue({
