@@ -19,7 +19,7 @@ export default new Router({
         },
         {
           path : '/info/:blogId',
-          namr : 'info',
+          name : 'info',
           component : Blog_Info
         }
       ]

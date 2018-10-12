@@ -1,6 +1,10 @@
 const comjs = {
 
 }
+comjs.buildPath0 = function(url,param1){
+    url = url + '/' + param1;
+    return url;
+}
 comjs.buildPath = function(url,param1,param2){
     url = url + '/' + param1 + '/' + param2;
     return url;

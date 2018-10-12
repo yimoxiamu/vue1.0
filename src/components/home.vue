@@ -53,6 +53,10 @@ p{
     float:right;
     margin-right:10px;
 }
+.comment_count{
+    float:right;
+    margin-right:10px;
+}
 .head{
     height: 80px;
     position:relative;
@@ -84,7 +88,7 @@ p{
         <div class="blogList" v-for="item in items">
             <Card class="card">
                 <div style="width:100%;height:20px">
-                    <span class="title"><a @click="doRout($event)" :data-id="item.blog_uuid">{{ item.blog_title }}</a></span><span class="create_time">{{ item.create_time }}</span>
+                    <span class="title"><a @click="doRout($event)" :data-id="item.id">{{ item.blog_title }}</a></span><span class="create_time">{{ item.create_time }}</span>
                 </div>
                 <div >
                     <span class="auth"><Icon type="md-color-filter" />{{item.blog_auth}}</span>
@@ -95,6 +99,8 @@ p{
                 </div>               
                 <div style="width:100%;height:20px">
                     <span class="like_count" ><Icon @click="addLike($event)" type="ios-thumbs-up-outline"   :data-id="item.blog_uuid" style="cursor:pointer;" /><span>{{ item.like_count }}</span></span>
+                    <span class="comment_count" v-if="item.comment_count != null"><Icon type="ios-map-outline" />{{ item.comment_count }}</span>
+                    <span class="comment_count" v-else><Icon type="ios-map-outline" />0</span>
                     <span class="read_count"><Icon type="ios-map-outline" />{{ item.read_count }}</span>
                 </div>
             </Card>
@@ -118,7 +124,6 @@ export default {
     created:function(){
         let url = this.$comjs.buildPath("/blog/blogList",this.pageNum,this.pageSize);
         this.$http.get(url).then(response =>{
-            console.info(response);
             const _data = response.data.data;
             this.total = _data.total;
             this.items = _data.items;
@@ -127,11 +132,8 @@ export default {
         })
     },methods:{
         onChangeNum(curpage){
-            const data = {
-                pageNum : curpage,
-                pageSize : this.pageSize
-            }
-            this.$http.post("/blog/blogList",data).then(response=>{
+            let url = this.$comjs.buildPath("/blog/blogList",curpage,this.pageSize);
+            this.$http.get(url).then(response=>{
                 const _data = response.data.data;
                 this.total = _data.total;
                 this.items = _data.items;
@@ -141,7 +143,9 @@ export default {
         },
         doRout(e){
             const id = e.target.dataset.id;
-            this.$router.push('/info/'+id);
+            // this.$router.push({path:"/info/"+id});
+            
+            this.$router.push({name:'info',params :{blogId:id}});
         },
         addRead(e){
             const uuid = e.dataset.id;
