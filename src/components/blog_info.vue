@@ -1,8 +1,31 @@
+<style>
+.title{
+  height: 40px;
+  margin-top: 20px;
+}
+.author{
+  margin-top: 10px;
+  height: 20px;
+}
+</style>
+
+
+
 <template>
-    <div>
-        <span>{{id}}</span>
-    </div>   
+  <div>    
+    <Row>
+      <Col class="title" span="6">asdas</Col>
+      <Col class="title" span="12" style="background-color:red">asdas</Col>
+      <Col class="title" span="6">asdas</Col>
+    </Row> 
+     <Row>
+      <Col class="author" span="6">asdas</Col>
+      <Col class="author" span="12" style="background-color:red">asdas</Col>
+      <Col class="author" span="6">asdas</Col>
+    </Row> 
+  </div>
 </template>
+
 <script>
 export default {
   name: "editor",
