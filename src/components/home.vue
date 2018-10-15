@@ -98,9 +98,9 @@ p{
                     <span class="discription">{{ item.blog_description }}</span>
                 </div>               
                 <div style="width:100%;height:20px">
-                    <span class="like_count" ><Icon @click="addLike($event)" type="ios-thumbs-up-outline"   :data-id="item.blog_uuid" style="cursor:pointer;" /><span>{{ item.like_count }}</span></span>
-                    <span class="comment_count" v-if="item.comment_count != null"><Icon type="ios-map-outline" />{{ item.comment_count }}</span>
-                    <span class="comment_count" v-else><Icon type="ios-map-outline" />0</span>
+                    <span class="like_count" ><Icon @click="addLike($event)" type="ios-thumbs-up-outline"   :data-id="item.id" style="cursor:pointer;" /><span>{{ item.like_count }}</span></span>
+                    <span class="comment_count" v-if="item.comment_count != null"><Icon type="ios-chatbubbles-outline" />{{ item.comment_count }}</span>
+                    <span class="comment_count" v-else><Icon type="ios-chatbubbles-outline" />0</span>
                     <span class="read_count"><Icon type="ios-map-outline" />{{ item.read_count }}</span>
                 </div>
             </Card>
@@ -151,6 +151,7 @@ export default {
             const uuid = e.dataset.id;
         },
         addLike(e){
+            console.info("123");
             var likeList = localStorage.getItem('likeBlog');
             var uuid = e.target.dataset.id;
             if(likeList == null || likeList.indexOf(uuid) == -1){
