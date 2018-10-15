@@ -1,29 +1,5 @@
 <style>
-.title{
-  height: 40px;
-  margin-top: 20px;
-}
-.author{
-  margin-top: 10px;
-  height: 20px;
-}
-.description{
-  margin-top: 10px;
-  height: 40px;
-}
-.text{
-  margin-top: 10px;
-  height: auto;
-}
-.titlebox{
-  margin-top: 10px;
-  height: 20px;
-}
-Pre{
-  background:#eeeeee; 
-  border:1px solid #cccccc; 
-  padding:5px 10px
-}
+
 </style>
 
 
@@ -60,6 +36,7 @@ Pre{
 </template>
 
 <script>
+import Css from '../../static/css/blogInfo.css';
 export default {
   name: "editor",
   data() {
