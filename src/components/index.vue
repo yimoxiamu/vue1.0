@@ -1,5 +1,5 @@
 <template>
-    <Layout style="height:930px">
+    <Layout>
         <Header>
         <Menu mode="horizontal" :theme="theme1" active-name="1">
         <MenuItem name="1" to="/">
