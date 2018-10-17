@@ -109,12 +109,12 @@ export default {
       }
       
       }else{
-        this.$Message.error(response.data.message);
-      }
-    }).catch(error => {
-      console.info(error)
-    })
-  }
+            this.$Message.error(response.data.message);
+          }
+      }).catch(error => {
+          console.info(error)
+      })
+    }
   },
 
 };
