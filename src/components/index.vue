@@ -6,9 +6,9 @@
             <Icon type="ios-paper" />
             首页
         </MenuItem>
-        <MenuItem name="2">
+        <MenuItem name="2" to="/pull">
             <Icon type="ios-people" />
-            用户管理
+            发表文章
         </MenuItem>
         <Submenu name="3">
             <template slot="title">

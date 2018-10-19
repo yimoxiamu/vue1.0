@@ -57,7 +57,7 @@
 <script>
 import Css from '../../static/css/blogInfo.css';
 export default {
-  name: "editor",
+  name : "blog_info",
   data() {
     return {
         id:null,
@@ -69,11 +69,11 @@ export default {
         last_id:null
     }
   },
-  created(){
+  mounted(){
     this.id = this.$route.params.blogId;
     this.init(this.id);
   },
-  mounted(){
+  created(){
   },
   methods:{
     doRout(e){
@@ -90,27 +90,27 @@ export default {
       let url = this.$comjs.buildPath0('blog/blogInfo',this.$route.params.blogId);
       this.$http.get(url).then(response =>{
       if(response.data.code == 0){
-      let data = response.data.data;
-      this.blog_info = data.blogInfo;
-      if(data.contextualInfo.length == 2){
-          this.title_box = data.contextualInfo;
-      }else{
-          if(data.contextualInfo[0].id < this.id){
-            this.last_title = data.contextualInfo[0].blog_title;
-            this.next_title = "没有啦！";
-            this.last_id = data.contextualInfo[0].id;
-            this.next_id = "null";
-          }else{
-            this.next_title = data.contextualInfo[0].blog_title;
-            this.last_title = "没有啦！";
-            this.next_id = data.contextualInfo[0].id;
-            this.last_id = "null";
+          let data = response.data.data;
+          this.blog_info = data.blogInfo;
+          if(data.contextualInfo.length == 2){
+              this.title_box = data.contextualInfo;
+            }else{
+              if(data.contextualInfo[0].id < this.id){
+                this.last_title = data.contextualInfo[0].blog_title;
+                this.next_title = "没有啦！";
+                this.last_id = data.contextualInfo[0].id;
+                this.next_id = "null";
+              }else{
+                this.next_title = data.contextualInfo[0].blog_title;
+                this.last_title = "没有啦！";
+                this.next_id = data.contextualInfo[0].id;
+                this.last_id = "null";
+              }
           }
-      }
-      
+          
       }else{
             this.$Message.error(response.data.message);
-          }
+      }
       }).catch(error => {
           console.info(error)
       })
