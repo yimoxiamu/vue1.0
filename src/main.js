@@ -22,6 +22,11 @@ axios.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
+router.afterEach(() => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+})
+
 Vue.prototype.$http = axios
 Vue.prototype.$comjs = Comjs;
 Vue.use(iview);

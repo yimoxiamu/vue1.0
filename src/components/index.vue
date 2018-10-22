@@ -2,7 +2,7 @@
     <Layout>
         <Header>
         <Menu mode="horizontal" :theme="theme1" active-name="1">
-        <MenuItem name="1" to="/">
+        <MenuItem name="1" to="/index">
             <Icon type="ios-paper" />
             首页
         </MenuItem>
