@@ -76,14 +76,15 @@ export default {
         addLike(e){
             console.info("123");
             var likeList = localStorage.getItem('likeBlog');
-            var uuid = e.target.dataset.id;
+            var id = e.target.dataset.id;
             if(likeList == null || likeList.indexOf(uuid) == -1){
                 const next = e.currentTarget.nextElementSibling;
                 next.innerHTML = Number(next.innerHTML)+1;
                 likeList = likeList +","+uuid;
                 localStorage.setItem('likeBlog',likeList);
                 //更改库中数据
-                this.$http.post("/blog/addLike",{"uuid":uuid,"likeCount":next.innerHTML}).then(response =>{
+                let url = this.$comjs.buildPath0('/blog/addLike',id);
+                this.$http.get(url).then(response =>{
                     console.info(response);
                 }).catch(error => {
                     console.info(error);
