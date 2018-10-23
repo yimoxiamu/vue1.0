@@ -3,10 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import iview from 'iview';
-import axios from 'axios';
+import iview from 'iview'
+import axios from 'axios'
 import 'iview/dist/styles/iview.css'
-import Qs from 'querystring';
+import Qs from 'querystring'
 import Comjs from '.././static/js/common.js'
 
 Vue.config.productionTip = false;
