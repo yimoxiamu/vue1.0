@@ -7,7 +7,7 @@
         <Input  placeholder="文章简介" v-model="formData.blog_description" style="width: 68%" /><br>
         <div style="height:20px"></div>
         <label>文章内容:</label>
-            <textarea name="editor1"></textarea>      
+            <textarea id="editor" name="editor1"></textarea>      
         </form>
         <div style="margin-top:20px">
             <Button type="success" @click="subMit()" style="float:right">提交</Button>
@@ -39,7 +39,8 @@ export default {
             formData:{
                 blog_type:0,
                 blog_title:'',
-                blog_description:''
+                blog_description:'',
+                blog_text:'',
             },
             insert_type:'',
             modal:false
@@ -114,7 +115,22 @@ export default {
             })
         },
         subMit(){
-            console.info(this.formData);
+            const _form = this.formData;
+            _form.blog_text = CKEDITOR.instances.editor.getData();
+            const data = {
+                'blog_text' : _form.blog_text,
+                'blog_title' : _form.blog_title,
+                'type_id' : _form.blog_type,
+                'blog_description' : _form.blog_description
+            };
+            console.info(data);
+            this.$http.put('/blog/pull',data).then(res =>{
+                console.info(res);
+            })
+            .catch(err =>{
+                console.info(err);
+            })
+            
         },
         insertType(){
             console.info(this.insert_type);

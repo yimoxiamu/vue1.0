@@ -45,7 +45,7 @@ export default {
         }
     },
     created:function(){
-        let url = this.$comjs.buildPath("/blog/blogList",this.pageNum,this.pageSize);
+        let url = this.$comjs.buildPath("/blog/list",this.pageNum,this.pageSize);
         this.$http.get(url).then(response =>{
             const _data = response.data.data;
             this.total = _data.total;
@@ -55,7 +55,7 @@ export default {
         })
     },methods:{
         onChangeNum(curpage){
-            let url = this.$comjs.buildPath("/blog/blogList",curpage,this.pageSize);
+            let url = this.$comjs.buildPath("/blog/list",curpage,this.pageSize);
             this.$http.get(url).then(response=>{
                 const _data = response.data.data;
                 this.total = _data.total;
@@ -70,21 +70,16 @@ export default {
             
             this.$router.push({name:'info',params :{blogId:id}});
         },
-        addRead(e){
-            const uuid = e.dataset.id;
-        },
         addLike(e){
-            console.info("123");
             var likeList = localStorage.getItem('likeBlog');
             var id = e.target.dataset.id;
-            if(likeList == null || likeList.indexOf(uuid) == -1){
+            if(likeList == null || likeList.indexOf(id) == -1){
                 const next = e.currentTarget.nextElementSibling;
                 next.innerHTML = Number(next.innerHTML)+1;
-                likeList = likeList +","+uuid;
+                likeList = likeList +","+id;
                 localStorage.setItem('likeBlog',likeList);
                 //更改库中数据
-                let url = this.$comjs.buildPath0('/blog/addLike',id);
-                this.$http.get(url).then(response =>{
+                this.$http.post('/blog/addLike',{"id":id}).then(response =>{
                     console.info(response);
                 }).catch(error => {
                     console.info(error);

@@ -72,6 +72,7 @@ export default {
   mounted(){
     this.id = this.$route.params.blogId;
     this.init(this.id);
+    this.addRead(this.id);
   },
   created(){
   },
@@ -84,10 +85,11 @@ export default {
       this.$router.push({name:'info',params :{blogId:id}});
       this.id = this.$route.params.blogId;
       this.init(this.id);
+      this.addRead(this.id);
     },
     //初始化文章详情
     init(id){
-      let url = this.$comjs.buildPath0('blog/blogInfo',this.$route.params.blogId);
+      let url = this.$comjs.buildPath0('blog/info',this.$route.params.blogId);
       this.$http.get(url).then(response =>{
       if(response.data.code == 0){
           let data = response.data.data;
@@ -114,7 +116,14 @@ export default {
       }).catch(error => {
           console.info(error)
       })
-    }
+      },
+      addRead(id){
+            this.$http.post('/blog/addRead',{"id":id}).then(res =>{
+                console.info(res);
+            }).catch(err =>{
+                console.info(err);
+            })
+      },
   },
 
 };
