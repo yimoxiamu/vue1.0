@@ -98,11 +98,10 @@ export default {
                 items: ['Maximize', 'ShowBlocks']
             }];
             CKEDITOR.replace( 'editor1',{
-            filebrowserUploadUrl : "http://localhost:7070/img/upload",
-            filebrowserBrowseUrl : 'http://localhost:7070/ckp/upload',
+            filebrowserUploadUrl : "http://154.8.218.29:7000/img/upload",
+            filebrowserBrowseUrl : 'http://www.baidu.com',
             language: 'zh-CN',
             height:500,
-            width:1000,
             toolbar:myToolbar,
             });
         },
@@ -138,3 +137,9 @@ export default {
     }
 }
 </script>
+<style>
+#cke_content{
+width:90%；
+}
+</style>
+
