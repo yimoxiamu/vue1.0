@@ -4,7 +4,7 @@
         <label >文章标题:</label>             
         <Input  placeholder="文章标题" v-model="formData.blog_title" style="width: 20%" />
         <label >文章简介:</label>
-        <Input  placeholder="文章简介" v-model="formData.blog_description" style="width: 68%" /><br>
+        <Input  placeholder="文章简介" v-model="formData.blog_description" style="width: 72%" /><br>
         <div style="height:20px"></div>
         <label>文章内容:</label>
             <textarea id="editor" name="editor1"></textarea>      
@@ -99,11 +99,12 @@ export default {
             }];
             CKEDITOR.replace( 'editor1',{
             filebrowserUploadUrl : "http://154.8.218.29:7000/img/upload",
-            filebrowserBrowseUrl : 'http://www.baidu.com',
+            filebrowserBrowseUrl : '/#/img',
             language: 'zh-CN',
-            height:500,
+            height: 600,
             toolbar:myToolbar,
             });
+
         },
         typeInit(){
             this.$http.get("/type/typeList").then(res =>{
@@ -139,7 +140,7 @@ export default {
 </script>
 <style>
 #cke_content{
-width:90%；
+width:90%;
 }
 </style>
 

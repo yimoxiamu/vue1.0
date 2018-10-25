@@ -5,6 +5,7 @@ import Index from '@/components/index'
 import Blog_Info from '@/components/blog_Info'
 import Pull_blog from '@/components/pull_blog'
 import Login from '@/components/login'
+import Img from '@/components/img_brew'
 Vue.use(Router)
 
 export default new Router({
@@ -34,7 +35,11 @@ export default new Router({
       path:'/',
       name:'login',
       component:Login
+    },
+    {
+      path:'/img',
+      name:'img',
+      component:Img
     }
-
   ]
 })
